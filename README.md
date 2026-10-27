@@ -1,7 +1,6 @@
 # CausualMemoryQA / PoST
 
-Code for support-strategy prediction with posterior training targets,
-strategy histories, and supervision diagnostics.
+PoST trains support-strategy predictors with posterior targets and dialogue strategy histories. This repository contains the classifiers, teacher-target construction and evaluations on ESConv and AnnoMI. It also includes controls for teacher inputs, historical labels and sequential prediction.
 
 ## Code map
 
@@ -59,27 +58,24 @@ See `python -m esc.train_cls --help` for `--alpha`, `--T`,
 match the intended supervision condition; response-aware diagnostic teachers
 are distinct from same-input teachers.
 
-## Release contents
+## Working with teacher targets
 
-This repository contains the project source code, training and evaluation
-entry points, baseline implementations, and available tests. Experiment and
-metric-analysis code is retained. Manuscripts, downloaded reference papers,
-editorial notes, publication figures and LaTeX-table exporters are not included.
+Each teacher fold writes a `logits.npz` file in its output directory.
+`esc.oof` combines the held-out predictions into a training-set target array;
+the example above produces `runs/esconv/self_foof.npz`.
+Pass that file to the student's `--distill` option.
 
-Datasets, model weights, local prediction caches, logs, and machine credentials
-are not distributed with this release. Obtain datasets and model weights from
-their original providers and follow their respective access and usage terms.
-Configuration defaults in some experimental scripts refer to the original
-Windows or Linux workspace; use the documented environment variables and
-command-line options, and review path constants before a full run.
+Keep the dataset split and example ordering fixed between teacher and student.
+Use a separate output directory for each seed and supervision condition.
+The cross-fitted example above specifies one target-generation recipe; full-data
+teachers and response-aware diagnostic teachers are separate experimental conditions.
 
-The release was checked for Python syntax and accidental inclusion of manuscript
-files and embedded credentials. This publication check does not rerun GPU
-training or certify that every experimental entry point is turnkey.
+## Data and configuration
 
-## Repository status
+Download benchmark datasets and pretrained models from their original providers
+and follow their usage terms. Data, checkpoints and generated predictions are
+stored locally and are not included in this repository.
 
-Public code repository: https://github.com/xkk9866/CausualMemoryQA
-
-The public release is a code snapshot. Dataset and checkpoint availability is
-separate from source-code availability.
+Set the paths described above before running experiments. Some auxiliary scripts
+use fixed local path defaults; adjust those paths for your installation.
+The command examples assume execution from the repository root.
