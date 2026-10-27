@@ -1,0 +1,5 @@
+# Optional dependencies used by training or auxiliary entry points.
+peft
+scipy
+accelerate
+bitsandbytes; platform_system == 'Linux'

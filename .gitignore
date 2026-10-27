@@ -1,0 +1,56 @@
+# Manuscripts, downloaded reference papers, and editorial materials
+paper/
+sample/
+docs/
+ccfa-review-reports/
+*.tex
+*.bib
+*.pdf
+*.aux
+*.bbl
+*.blg
+*.cls
+*.sty
+# Local data, generated outputs and model artifacts
+data/
+results/
+runs/
+logs/
+cache/
+.cache/
+checkpoints/
+models/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.pkl
+*.npz
+*.npy
+*.parquet
+*.log
+# Credentials and private machine configuration
+.env
+.env.*
+!.env.example
+*credentials*
+*secrets*
+*.pem
+*.key
+算力服务器.txt
+# Python / editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+pytest-cache-files-*/
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+
+# Publication-only exporters
+esc/iris_tables.py
+esc/paper_numbers.py
+esc/paper_tables.py
+esc/table.py
